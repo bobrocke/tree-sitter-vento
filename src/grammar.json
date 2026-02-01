@@ -9,8 +9,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "front_matter"
+              "type": "PREC",
+              "value": 10,
+              "content": {
+                "type": "SYMBOL",
+                "name": "front_matter"
+              }
             },
             {
               "type": "BLANK"
@@ -102,33 +106,44 @@
       ]
     },
     "front_matter": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "---"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "PATTERN",
-                "value": "[^\\n]+"
-              },
-              {
-                "type": "PATTERN",
-                "value": "\\n"
+      "type": "PREC",
+      "value": 10,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 10,
+              "content": {
+                "type": "STRING",
+                "value": "---"
               }
-            ]
+            }
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_front_matter_content"
+            },
+            "named": true,
+            "value": "front_matter_content"
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 10,
+              "content": {
+                "type": "STRING",
+                "value": "---"
+              }
+            }
           }
-        },
-        {
-          "type": "STRING",
-          "value": "---"
-        }
-      ]
+        ]
+      }
     },
     "_expression": {
       "type": "CHOICE",
@@ -243,6 +258,10 @@
     {
       "type": "SYMBOL",
       "name": "_code"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_front_matter_content"
     }
   ],
   "inline": [],

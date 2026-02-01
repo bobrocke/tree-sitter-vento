@@ -1,4 +1,4 @@
-((front_matter) @injection.content
+((front_matter_content) @injection.content
   (#set! injection.language "yaml"))
 
 ((content) @injection.content

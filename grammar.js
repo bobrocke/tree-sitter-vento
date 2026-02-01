@@ -1,10 +1,10 @@
 module.exports = grammar({
   name: "vento",
-  externals: ($) => [$._code],
+  externals: ($) => [$._code, $._front_matter_content],
   extras: ($) => [/\s/],
   rules: {
     template: ($) =>
-      seq(optional($.front_matter), repeat(choice($.content, $.tag))),
+      seq(optional(prec(10, $.front_matter)), repeat(choice($.content, $.tag))),
 
     content: () => prec.right(repeat1(/[^\{]+|\{/)),
 
@@ -17,16 +17,13 @@ module.exports = grammar({
       ),
 
     front_matter: ($) =>
-      seq(
-        "---",
-        repeat1(
-          choice(
-            // Match any line that is not a closing '---'
-            /[^\n]+/,
-            /\n/,
-          ),
+      prec(
+        10,
+        seq(
+          token(prec(10, "---")),
+          alias($._front_matter_content, $.front_matter_content),
+          token(prec(10, "---")),
         ),
-        "---",
       ),
 
     _expression: ($) =>
