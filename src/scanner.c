@@ -96,8 +96,26 @@ bool tree_sitter_vento_external_scanner_scan(
           lexer->result_symbol = CODE;
           return true;
         }
+      } else if (iswspace(lexer->lookahead)) {
+        // Check for ' of ' keyword pattern
+        lexer->advance(lexer, false);
+        
+        if (lexer->lookahead == 'o') {
+          lexer->mark_end(lexer);
+          lexer->advance(lexer, false);
+          
+          if (lexer->lookahead == 'f') {
+            lexer->advance(lexer, false);
+            
+            if (iswspace(lexer->lookahead)) {
+              // Found ' of ' pattern, stop here
+              lexer->result_symbol = CODE;
+              return true;
+            }
+          }
+        }
       } else {
-        const bool skip = iswspace(lexer->lookahead) || lexer->lookahead == '-';
+        const bool skip = lexer->lookahead == '-';
         lexer->advance(lexer, false);
         if (!skip) {
           lexer->mark_end(lexer);

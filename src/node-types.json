@@ -25,6 +25,25 @@
     }
   },
   {
+    "type": "for_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "code",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "front_matter",
     "named": true,
     "fields": {},
@@ -57,6 +76,10 @@
         },
         {
           "type": "filter",
+          "named": true
+        },
+        {
+          "type": "for_statement",
           "named": true
         },
         {

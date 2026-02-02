@@ -330,3 +330,42 @@ Keywords - Set, Layout, Echo, Slot, Default
     (keyword)
     (code))
   (content))
+
+====================
+For Loop with Of Keyword
+====================
+
+{{ for tag of tags }}
+  <span>{{ tag }}</span>
+{{ /for }}
+
+{{ for item of items }}
+  {{ item }}
+{{ /for }}
+
+---
+
+(template
+  (tag
+    (for_statement
+      (keyword)
+      (code)
+      (keyword)
+      (code)))
+  (content)
+  (tag
+    (code))
+  (tag
+    (keyword))
+  (tag
+    (for_statement
+      (keyword)
+      (code)
+      (keyword)
+      (code)))
+  (content)
+  (tag
+    (code))
+  (tag
+    (keyword))
+  (content))

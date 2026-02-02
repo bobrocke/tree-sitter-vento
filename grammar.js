@@ -30,6 +30,7 @@ module.exports = grammar({
       choice(
         $.comment,
         alias($.close_keyword, $.keyword),
+        prec(4, $.for_statement),
         prec(2, seq($.keyword, alias($._code, $.code))),
         prec(3, $.keyword),
         prec(1, alias($.code_snippet, $.code)),
@@ -37,9 +38,19 @@ module.exports = grammar({
 
     filter: ($) => repeat1(seq("|>", alias($._code, $.code))),
 
+    for_statement: ($) =>
+      seq(
+        alias("for", $.keyword),
+        alias($._code, $.code),
+        alias($.of_keyword, $.keyword),
+        alias($._code, $.code),
+      ),
+
+    of_keyword: () => token("of"),
+
     // Vento keywords
     keyword: () =>
-      /if|else|for|from|of|include|set|import|export|layout|function|echo|slot|default/,
+      /if|else|for|from|include|set|import|export|layout|function|echo|slot|default/,
 
     code_snippet: ($) => seq(/[a-zA-Z>\.\(\)\!_\?]/, $._code),
 
