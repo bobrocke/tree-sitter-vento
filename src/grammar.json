@@ -163,7 +163,7 @@
         },
         {
           "type": "PREC",
-          "value": 4,
+          "value": 5,
           "content": {
             "type": "SYMBOL",
             "name": "for_statement"
@@ -171,7 +171,7 @@
         },
         {
           "type": "PREC",
-          "value": 2,
+          "value": 4,
           "content": {
             "type": "SEQ",
             "members": [
@@ -193,7 +193,7 @@
         },
         {
           "type": "PREC",
-          "value": 3,
+          "value": 4,
           "content": {
             "type": "SYMBOL",
             "name": "keyword"
@@ -295,8 +295,16 @@
           "value": "[a-zA-Z>\\.\\(\\)\\!_\\?]"
         },
         {
-          "type": "SYMBOL",
-          "name": "_code"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_code"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
