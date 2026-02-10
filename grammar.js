@@ -87,6 +87,9 @@ module.exports = grammar({
         $.export_block,
         $.export_tag,
         $.function_block,
+        $.echo_tag,
+        $.slot_block,
+        $.default_block,
         // Plugin, but easy to support.
         $.fragment_block,
         $.tag,
@@ -261,6 +264,21 @@ module.exports = grammar({
 
     fragment_block: ($) =>
       seq($.fragment_tag_start, repeat($._any), $.fragment_tag_end),
+
+    echo_tag: ($) => tag($, "echo", $._expression),
+
+    slot_tag_start: ($) => tag($, "slot", $.identifier),
+
+    slot_tag_end: ($) => tag($, "/slot"),
+
+    slot_block: ($) => seq($.slot_tag_start, repeat($._any), $.slot_tag_end),
+
+    default_tag_start: ($) => tag($, "default", $.identifier),
+
+    default_tag_end: ($) => tag($, "/default"),
+
+    default_block: ($) =>
+      seq($.default_tag_start, repeat($._any), $.default_tag_end),
 
     identifier: () => /[A-Za-z_$][a-zA-Z0-9_$]*/,
     comment_tag: ($) =>

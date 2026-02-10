@@ -16,6 +16,41 @@ A [tree-sitter](https://github.com/tree-sitter/tree-sitter) parser for the [Vent
 - HTML content injection for template markup
 - Syntax highlighting for all Vento constructs
 
+### Supported Keywords
+
+All Vento keywords are properly parsed and highlighted:
+
+#### Control Flow
+
+- `{{ if }}` / `{{ /if }}` - Conditional blocks
+- `{{ else if }}` - Else-if branches
+- `{{ else }}` - Else branches
+- `{{ for }}` / `{{ /for }}` - Loop blocks (with optional `await`)
+
+#### Variables and Output
+
+- `{{ set }}` / `{{ /set }}` - Variable assignment (tag and block forms)
+- `{{ echo }}` - Output expressions
+
+#### Layout and Composition
+
+- `{{ layout }}` / `{{ /layout }}` - Layout blocks
+- `{{ slot }}` / `{{ /slot }}` - Slot definitions
+- `{{ default }}` / `{{ /default }}` - Default content blocks
+- `{{ include }}` - Include other templates
+- `{{ fragment }}` / `{{ /fragment }}` - Fragment blocks (plugin)
+
+#### Functions and Modules
+
+- `{{ function }}` / `{{ /function }}` - Function definitions (with optional `async` and `export`)
+- `{{ import }}` - Import from other templates
+- `{{ export }}` / `{{ /export }}` - Export variables (tag and block forms)
+
+#### Special Tags
+
+- `{{> }}` - JavaScript execution tag
+- `{{# #}}` - Comment tag
+
 ### Front Matter Support
 
 The parser supports YAML front matter at the beginning of Vento templates:

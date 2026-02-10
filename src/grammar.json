@@ -188,6 +188,18 @@
         },
         {
           "type": "SYMBOL",
+          "name": "echo_tag"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "slot_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "default_block"
+        },
+        {
+          "type": "SYMBOL",
           "name": "fragment_block"
         },
         {
@@ -1577,6 +1589,208 @@
         {
           "type": "SYMBOL",
           "name": "fragment_tag_end"
+        }
+      ]
+    },
+    "echo_tag": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_tag_start_delimiter"
+          },
+          {
+            "type": "STRING",
+            "value": "echo"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "}}"
+              },
+              {
+                "type": "STRING",
+                "value": "-}}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "slot_tag_start": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_tag_start_delimiter"
+          },
+          {
+            "type": "STRING",
+            "value": "slot"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "}}"
+              },
+              {
+                "type": "STRING",
+                "value": "-}}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "slot_tag_end": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_tag_start_delimiter"
+          },
+          {
+            "type": "STRING",
+            "value": "/slot"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "}}"
+              },
+              {
+                "type": "STRING",
+                "value": "-}}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "slot_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "slot_tag_start"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_any"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "slot_tag_end"
+        }
+      ]
+    },
+    "default_tag_start": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_tag_start_delimiter"
+          },
+          {
+            "type": "STRING",
+            "value": "default"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "}}"
+              },
+              {
+                "type": "STRING",
+                "value": "-}}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "default_tag_end": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_tag_start_delimiter"
+          },
+          {
+            "type": "STRING",
+            "value": "/default"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "}}"
+              },
+              {
+                "type": "STRING",
+                "value": "-}}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "default_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "default_tag_start"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_any"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "default_tag_end"
         }
       ]
     },
