@@ -1,4 +1,52 @@
 ====================
+Front Matter
+====================
+
+---
+title: My Page
+date: 2024-01-01
+tags:
+  - vento
+  - template
+---
+
+<h1>Hello world!</h1>
+
+---
+
+(template
+  (front_matter
+    (front_matter_delimiter)
+    (front_matter_content)
+    (front_matter_delimiter))
+  (content))
+
+====================
+Front Matter with Content
+====================
+
+---
+layout: base.vto
+title: Hello World
+---
+
+<div>
+  {{ title }}
+</div>
+
+---
+
+(template
+  (front_matter
+    (front_matter_delimiter)
+    (front_matter_content)
+    (front_matter_delimiter))
+  (content)
+  (tag
+    (code))
+  (content))
+
+====================
 Variables
 ====================
 

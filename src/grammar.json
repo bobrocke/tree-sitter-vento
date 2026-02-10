@@ -3,11 +3,133 @@
   "name": "vento",
   "rules": {
     "template": {
-      "type": "REPEAT",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_any"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "front_matter"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_any"
+          }
+        }
+      ]
+    },
+    "front_matter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 10,
+              "content": {
+                "type": "STRING",
+                "value": "---"
+              }
+            }
+          },
+          "named": true,
+          "value": "front_matter_delimiter"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": -1,
+                  "content": {
+                    "type": "REPEAT1",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "PATTERN",
+                          "value": "[^\\n-]+\\n"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "-[^\\n-]+\\n"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "--[^\\n-]+\\n"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "[^\\n-]+"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "-[^\\n-]+"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "--[^\\n-]+"
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "\\n"
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              "named": true,
+              "value": "front_matter_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "---"
+            }
+          },
+          "named": true,
+          "value": "front_matter_delimiter"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\n"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "_any": {
       "type": "CHOICE",

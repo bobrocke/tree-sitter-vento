@@ -1,5 +1,7 @@
 (comment) @comment @spell
 
+(front_matter_delimiter) @punctuation.delimiter
+
 (if_tag_start) @keyword.control
 (if_tag_end) @keyword.control
 (else_if_tag) @keyword.control
